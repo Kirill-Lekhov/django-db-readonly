@@ -18,7 +18,7 @@ def _get_readonly_dbs():
     for db_key in getattr(settings, "DB_READ_ONLY_DATABASES", tuple()):
         db = settings.DATABASES.get(db_key)
         if db:
-            read_only_db_names.append(db["NAME"])
+            read_only_db_names.append(db_key)
     return read_only_db_names
 
 
@@ -97,7 +97,7 @@ class ReadOnlyCursorWrapper(object):
             return True
 
         # Is the db in this list of readonly dbs?
-        return self.db.settings_dict["NAME"] in self.readonly_dbs
+        return self.db.alias in self.readonly_dbs
 
     @property
     def _last_executed(self):
