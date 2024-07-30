@@ -14,12 +14,12 @@ def _is_readonly():
 
 
 def _get_readonly_dbs():
-    read_only_db_names = []
+    read_only_db_aliases = []
     for db_key in getattr(settings, "DB_READ_ONLY_DATABASES", tuple()):
         db = settings.DATABASES.get(db_key)
         if db:
-            read_only_db_names.append(db_key)
-    return read_only_db_names
+            read_only_db_aliases.append(db_key)
+    return read_only_db_aliases
 
 
 class ReadOnlyCursorWrapper(object):
