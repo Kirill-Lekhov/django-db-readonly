@@ -7,17 +7,6 @@ jobs:
     strategy:
       matrix:
         version: ["3.8.1", "3.9.2", "3.10", "3.11", "3.12"]
-        include:
-          - version: "3.8.1"
-            django: "^1.9"
-          - version: "3.9.2"
-            django: "^4.2"
-          - version: "3.10"
-            django: "^5.0"
-          - version: "3.11"
-            django: "^5.0"
-          - version: "3.12"
-            django: "^5.0"
     runs-on: "ubuntu-20.04"
     steps:
       - uses: actions/checkout@v4
@@ -27,9 +16,6 @@ jobs:
           python-version: ${{ matrix.version }}
       - name: Set up Poetry
         run: pip install poetry && poetry install
-      - name: Patch Django
-        if: ${{ matrix.django != '' }}
-        run: poetry add django==${{ matrix.django }}
       - name: Run tests
         run: CI=true script/test
       - uses: actions/upload-artifact@v4
