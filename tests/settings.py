@@ -2,7 +2,7 @@ SECRET_KEY = "notsecr3t"
 
 DB_READ_ONLY_MIDDLEWARE_MESSAGE = False
 SITE_READ_ONLY = False
-DB_READ_ONLY_DATABASES = False
+DB_READ_ONLY_DATABASES = []
 
 DATABASE_ENGINE = "sqlite3"
 
@@ -13,9 +13,9 @@ DATABASE_ENGINE = "sqlite3"
 # DATABASE_HOST = "/var/mysql/mysql.sock"
 
 INSTALLED_APPS = [
-    "readonly",
+	"readonly",
 ]
 
 MIDDLEWARE = [
-    "readonly.middleware.DatabaseReadOnlyMiddleware",
+	"readonly.middleware.DatabaseReadOnlyMiddleware",
 ]

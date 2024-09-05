@@ -11,16 +11,16 @@ database connection's cursor wrapper.
 Install with:
 
 ```sh
-> pip install django-db-readonly
+> pip install git+https://github.com/Kirill-Lekhov/django-db-readonly.git
 ```
 
 Then add `readonly` to your `INSTALLED_APPS`.
 
 ```python
 INSTALLED_APPS = (
-    # ...
-    'readonly',
-    # ...
+	# ...
+	'readonly',
+	# ...
 )
 ```
 
@@ -42,9 +42,9 @@ There is also a middleware class that will handle the exceptions and attempt to 
 
 ```python
 MIDDLEWARE = (
-    # ...
-    'readonly.middleware.DatabaseReadOnlyMiddleware',
-    # ...
+	# ...
+	'readonly.middleware.DatabaseReadOnlyMiddleware',
+	# ...
 )
 ```
 
@@ -63,9 +63,9 @@ For additional messaging, there is a context processor that adds `SITE_READ_ONLY
 
 ```python
 TEMPLATE_CONTEXT_PROCESSORS = (
-    # ...
-    'readonly.context_processors.readonly',
-    # ...
+	# ...
+	'readonly.context_processors.readonly',
+	# ...
 )
 ```
 
@@ -74,7 +74,7 @@ And use it as you would any boolean in the template, e.g. `{% if SITE_READ_ONLY 
 ## Configuration
 
 - `SITE_READ_ONLY` - Use to disable writes to the database.
-- `DB_READ_ONLY_DATABASES` - A list of database names that read only is enforced on (and ignored for others).
+- `DB_READ_ONLY_DATABASES` - A list of database **labels** (e.g. `default`) that read only is enforced on (and ignored for others).
 - `DB_READ_ONLY_MIDDLEWARE_MESSAGE` - A custom message that can be used to tell the user when the DB is in readonly mode.
 
 ## Testing
@@ -92,8 +92,6 @@ More generally, if you have any other apps that modifies either `django.db.backe
 ## The Nitty Gritty
 
 How does this do what it does? Well, django-db-readonly sits between Django's own cursor wrapper at `django.db.backends.util.CursorWrapper` and the database specific cursor at `django.db.backends.*.base.*CursorWrapper`. It overrides two specific methods: `execute` and `executemany`. If the site is in read-only mode, then the SQL is examined to see if it contains any write actions (defined in `readonly.ReadOnlyCursorWrapper.SQL_WRITE_BLACKLIST`). If a write is detected, an exception is raised.
-
-[![CircleCI](https://circleci.com/gh/streeter/django-db-readonly.svg?style=svg)](https://circleci.com/gh/streeter/django-db-readonly) [![PyPI version](https://badge.fury.io/py/django-db-readonly.svg)](https://badge.fury.io/py/django-db-readonly)
 
 ## Copyright
 

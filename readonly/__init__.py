@@ -1,12 +1,13 @@
-from django.db.backends import utils
-
 from readonly.cursor import (
-    _is_readonly,
-    PatchedCursorWrapper,
-    PatchedCursorDebugWrapper,
+	_is_readonly,
+	PatchedCursorWrapper,
+	PatchedCursorDebugWrapper,
 )
 
+from django.db.backends import utils
+
+
 if _is_readonly():
-    # Monkey Patching!
-    utils.CursorWrapper = PatchedCursorWrapper
-    utils.CursorDebugWrapper = PatchedCursorDebugWrapper
+	# Monkey Patching!
+	utils.CursorWrapper = PatchedCursorWrapper
+	utils.CursorDebugWrapper = PatchedCursorDebugWrapper
