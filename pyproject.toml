@@ -9,12 +9,15 @@ packages = [{include = "readonly"}]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-django = ">=1.9"
+django = [
+	{ version = ">=1.9 <5.0", python = "<3.10" },
+	{ version = "^5.0", python = "^3.10" },
+]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.2"
 pytest-django = "^4.9.0"
-flake8 = "4.0.1"
+flake8 = "^7.1.1"
 flake8-zale = "^0.2.1"
 pytest-cov = "^5.0.0"
 
