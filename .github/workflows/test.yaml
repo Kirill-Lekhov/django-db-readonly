@@ -1,6 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.action }} is testing package
 on: [push]
+
 jobs:
   test-package:
     strategy:
@@ -13,8 +14,10 @@ jobs:
           - version: "3.9.2"
             django: "4.2"
             os: "ubuntu-20.04"
-    runs-on: ${{ matrix.os || "ubuntu-latest" }}
+    runs-on: ${{ env.OS }}
     steps:
+      - name: Set OS variable
+        run: echo "OS=${{ matrix.os || 'ubuntu-latest' }}" >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.version }}
         uses: actions/setup-python@v5
