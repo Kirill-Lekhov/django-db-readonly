@@ -10,22 +10,19 @@ jobs:
         include:
           - version: "3.8.1"
             django: "1.9"
-            os: "ubuntu-20.04"
           - version: "3.9.2"
             django: "4.2"
-            os: "ubuntu-20.04"
-    runs-on: ${{ env.OS }}
+    runs-on: "ubuntu-20.04"
     steps:
-      - name: Set OS variable
-        run: echo "OS=${{ matrix.os || 'ubuntu-latest' }}" >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.version }}
-      - run: pip install poetry
-      - run: poetry install
-      - run: CI=true script/test
+      - name: Set up Poetry
+        run: pip install poetry && poetry install
+      - name: Run tests
+        run: CI=true script/test
       - uses: actions/upload-artifact@v4
         with:
           name: coverage-report
