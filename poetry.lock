@@ -165,26 +165,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django"
-version = "5.1.1"
-description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
-optional = false
-python-versions = ">=3.10"
-files = [
-    {file = "Django-5.1.1-py3-none-any.whl", hash = "sha256:71603f27dac22a6533fb38d83072eea9ddb4017fead6f67f2562a40402d61c3f"},
-    {file = "Django-5.1.1.tar.gz", hash = "sha256:021ffb7fdab3d2d388bc8c7c2434eb9c1f6f4d09e6119010bbb1694dda286bc2"},
-]
-
-[package.dependencies]
-asgiref = ">=3.8.1,<4"
-sqlparse = ">=0.3.1"
-tzdata = {version = "*", markers = "sys_platform == \"win32\""}
-
-[package.extras]
-argon2 = ["argon2-cffi (>=19.1.0)"]
-bcrypt = ["bcrypt"]
-
-[[package]]
 name = "exceptiongroup"
 version = "1.2.2"
 description = "Backport of PEP 654 (exception groups)"
@@ -404,4 +384,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.1"
-content-hash = "f2d3ec3adc64de6049e3a9ec38e03203c7a380bd94711cc6de56f8d08a07ae88"
+content-hash = "543d1af68961e07e49922240912964a4f3efd1762779ea3447a3318f54b61b2d"
