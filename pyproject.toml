@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-db-readonly"
-version = "0.1.1"
+version = "0.1.1-post0"
 description = "Add a global database read-only setting."
 authors = []
 license = "MIT"
